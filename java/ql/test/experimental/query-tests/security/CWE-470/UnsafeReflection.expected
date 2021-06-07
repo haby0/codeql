@@ -1,11 +1,18 @@
 edges
-| UnsafeReflection.java:12:28:12:60 | getParameter(...) : String | UnsafeReflection.java:14:41:14:49 | className |
-| UnsafeReflection.java:22:28:22:60 | getParameter(...) : String | UnsafeReflection.java:25:49:25:57 | className |
+| UnsafeReflection.java:11:28:11:60 | getParameter(...) : String | UnsafeReflection.java:15:29:15:62 | ...[...] |
+| UnsafeReflection.java:23:28:23:60 | getParameter(...) : String | UnsafeReflection.java:28:29:28:33 | clazz |
+| UnsafeReflection.java:23:28:23:60 | getParameter(...) : String | UnsafeReflection.java:29:13:29:41 | ...[...] |
+| UnsafeReflection.java:37:28:37:60 | getParameter(...) : String | UnsafeReflection.java:42:29:42:33 | clazz |
 nodes
-| UnsafeReflection.java:12:28:12:60 | getParameter(...) : String | semmle.label | getParameter(...) : String |
-| UnsafeReflection.java:14:41:14:49 | className | semmle.label | className |
-| UnsafeReflection.java:22:28:22:60 | getParameter(...) : String | semmle.label | getParameter(...) : String |
-| UnsafeReflection.java:25:49:25:57 | className | semmle.label | className |
+| UnsafeReflection.java:11:28:11:60 | getParameter(...) : String | semmle.label | getParameter(...) : String |
+| UnsafeReflection.java:15:29:15:62 | ...[...] | semmle.label | ...[...] |
+| UnsafeReflection.java:23:28:23:60 | getParameter(...) : String | semmle.label | getParameter(...) : String |
+| UnsafeReflection.java:28:29:28:33 | clazz | semmle.label | clazz |
+| UnsafeReflection.java:29:13:29:41 | ...[...] | semmle.label | ...[...] |
+| UnsafeReflection.java:37:28:37:60 | getParameter(...) : String | semmle.label | getParameter(...) : String |
+| UnsafeReflection.java:42:29:42:33 | clazz | semmle.label | clazz |
 #select
-| UnsafeReflection.java:14:41:14:49 | className | UnsafeReflection.java:12:28:12:60 | getParameter(...) : String | UnsafeReflection.java:14:41:14:49 | className | Unsafe reflection of $@. | UnsafeReflection.java:12:28:12:60 | getParameter(...) | user input |
-| UnsafeReflection.java:25:49:25:57 | className | UnsafeReflection.java:22:28:22:60 | getParameter(...) : String | UnsafeReflection.java:25:49:25:57 | className | Unsafe reflection of $@. | UnsafeReflection.java:22:28:22:60 | getParameter(...) | user input |
+| UnsafeReflection.java:15:29:15:62 | ...[...] | UnsafeReflection.java:11:28:11:60 | getParameter(...) : String | UnsafeReflection.java:15:29:15:62 | ...[...] | Unsafe reflection of $@. | UnsafeReflection.java:11:28:11:60 | getParameter(...) | user input |
+| UnsafeReflection.java:28:29:28:33 | clazz | UnsafeReflection.java:23:28:23:60 | getParameter(...) : String | UnsafeReflection.java:28:29:28:33 | clazz | Unsafe reflection of $@. | UnsafeReflection.java:23:28:23:60 | getParameter(...) | user input |
+| UnsafeReflection.java:29:13:29:41 | ...[...] | UnsafeReflection.java:23:28:23:60 | getParameter(...) : String | UnsafeReflection.java:29:13:29:41 | ...[...] | Unsafe reflection of $@. | UnsafeReflection.java:23:28:23:60 | getParameter(...) | user input |
+| UnsafeReflection.java:42:29:42:33 | clazz | UnsafeReflection.java:37:28:37:60 | getParameter(...) : String | UnsafeReflection.java:42:29:42:33 | clazz | Unsafe reflection of $@. | UnsafeReflection.java:37:28:37:60 | getParameter(...) | user input |

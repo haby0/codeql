@@ -11,7 +11,9 @@
  */
 
 import java
+import DataFlow
 import UnsafeReflectionLib
+import semmle.code.java.dataflow.DataFlow
 import semmle.code.java.dataflow.FlowSources
 import DataFlow::PathGraph
 
@@ -19,7 +21,7 @@ private class ContainsSanitizer extends DataFlow::BarrierGuard {
   ContainsSanitizer() { this.(MethodAccess).getMethod().hasName("contains") }
 
   override predicate checks(Expr e, boolean branch) {
-    e = this.(MethodAccess).getArgument(0) and branch = false
+    e = this.(MethodAccess).getArgument(0) and branch = true
   }
 }
 
@@ -38,6 +40,26 @@ class UnsafeReflectionConfig extends TaintTracking::Configuration {
   override predicate isSource(DataFlow::Node source) { source instanceof RemoteFlowSource }
 
   override predicate isSink(DataFlow::Node sink) { sink instanceof UnsafeReflectionSink }
+
+  override predicate isAdditionalTaintStep(DataFlow::Node pred, DataFlow::Node succ) {
+    exists(
+      ReflectiveClassIdentifierMethodAccessCall rcimac,
+      ReflectionCreationInstanceOrCallMethodConfig rciocmc, MethodAccess ma
+    |
+      (
+        ma instanceof ReflectiveConstructorsAccess or
+        ma instanceof ReflectiveMethodsAccess
+      ) and
+      rciocmc.hasFlow(DataFlow::exprNode(rcimac), DataFlow::exprNode(ma.getQualifier())) and
+      rcimac.getArgument(0) = pred.asExpr() and
+      ma = succ.asExpr()
+    )
+    or
+    exists(ReflectiveClassIdentifierMethodAccessCall rcimac |
+      rcimac.getArgument(0) = pred.asExpr() and
+      rcimac = succ.asExpr()
+    )
+  }
 
   override predicate isSanitizerGuard(DataFlow::BarrierGuard guard) {
     guard instanceof ContainsSanitizer or guard instanceof EqualsSanitizer
