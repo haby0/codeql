@@ -54,11 +54,6 @@ class UnsafeReflectionConfig extends TaintTracking::Configuration {
       rcimac.getArgument(0) = pred.asExpr() and
       ma = succ.asExpr()
     )
-    or
-    exists(ReflectiveClassIdentifierMethodAccessCall rcimac |
-      rcimac.getArgument(0) = pred.asExpr() and
-      rcimac = succ.asExpr()
-    )
   }
 
   override predicate isSanitizerGuard(DataFlow::BarrierGuard guard) {

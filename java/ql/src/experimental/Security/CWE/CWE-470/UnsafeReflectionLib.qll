@@ -32,10 +32,6 @@ class UnsafeReflectionSink extends DataFlow::ExprNode {
       ma.getQualifier() = this.asExpr() and
       exists(ReflectionArgsConfig rac | rac.hasFlowToExpr(ma.getAnArgument()))
     )
-    or
-    exists(NewInstance ni |
-      ni.getCallee().getDeclaringType() instanceof TypeClass and ni.getQualifier() = this.asExpr()
-    )
   }
 }
 
